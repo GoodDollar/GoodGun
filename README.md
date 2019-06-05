@@ -11,7 +11,7 @@ npm install
 npm start
 ```
 
-## Getting Started
+## Environment Configuration
 
 Supports s3 config via env variable in the following way
 
