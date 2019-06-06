@@ -88,4 +88,4 @@ typings/
 .dynamodb/
 
 # Gundb folder
-.radata/
+radata

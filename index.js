@@ -10,6 +10,17 @@
   };
   var Gun = require("gun");
   const Config = require("./config.js");
+
+  const printMemory = () => {
+    const used = process.memoryUsage();
+    let toPrint = {};
+    for (let key in used) {
+      toPrint[key] = `${Math.round((used[key] / 1024 / 1024) * 100) / 100} MB`;
+    }
+    console.log("Memory usage:", toPrint);
+  };
+  setInterval(printMemory, 10000);
+
   console.log(Config);
   if (process.env.HTTPS_KEY) {
     config.key = fs.readFileSync(process.env.HTTPS_KEY);
@@ -22,6 +33,8 @@
   const gunConfig = { web: config.server.listen(config.port) };
   if (Config.gunPublicS3 && Config.gunPublicS3.key) {
     gunConfig.s3 = Config.gunPublicS3;
+  } else {
+    gunConfig.file = "radata";
   }
   console.log({ gunConfig });
   var gun = Gun(gunConfig);
