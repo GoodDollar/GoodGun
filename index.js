@@ -19,8 +19,11 @@
     config.server = require("http").createServer(Gun.serve(__dirname));
   }
 
-  const s3 = Config.gunPublicS3;
-
-  var gun = Gun({ web: config.server.listen(config.port), s3 });
+  const gunConfig = { web: config.server.listen(config.port) };
+  if (Config.gunPublicS3 && Config.gunPublicS3.key) {
+    gunConfig.s3 = Config.gunPublicS3;
+  }
+  console.log({ gunConfig });
+  var gun = Gun(gunConfig);
   console.log("Relay peer started on port " + config.port + " with /gun");
 })();
