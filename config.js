@@ -3,6 +3,36 @@ const convict = require("convict");
 
 // Define a schema
 const conf = convict({
+  name: {
+    format: String,
+    default: "goodgun",
+    env: "GUN_NAME"
+  },
+  mongoUrl: {
+    format: String,
+    default: undefined,
+    env: "MONGO_URL"
+  },
+  mongoPort: {
+    format: "port",
+    default: "27017",
+    env: "MONGO_PORT"
+  },
+  mongoQuery: {
+    format: String,
+    default: "",
+    env: "MONGO_QUERY"
+  },
+  mongoDB: {
+    format: String,
+    default: "test",
+    env: "MONGO_DB"
+  },
+  mongoCollection: {
+    format: String,
+    default: "gun_mongo_key",
+    env: "MONGO_COLLECTION"
+  },
   gunPublicS3: {
     key: {
       format: "*",

@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "aws-sdk": "^2.466.0",
     "convict": "^5.0.0",
     "dotenv": "^8.0.0",
-    "gun": "https://github.com/amark/gun.git#debug",
-    "nodemon": "^1.19.1",
-    "aws-sdk": "^2.466.0"
+    "gun": "^0.2019.726",
+    "gun-mongo-key": "^0.1.4",
+    "nodemon": "^1.19.1"
   },
   "scripts": {
     "dev:local": "nodemon index.js",
