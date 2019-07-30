@@ -37,7 +37,8 @@
     web: httpconfig.server.listen(httpconfig.port),
     file: Config.name,
     axe: false,
-    multicast: false
+    multicast: false,
+    peers: Config.peers
   };
   if (Config.mongoUrl) {
     require("gun-mongo-key");

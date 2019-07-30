@@ -8,6 +8,11 @@ const conf = convict({
     default: "goodgun",
     env: "GUN_NAME"
   },
+  peers: {
+    format: Array,
+    default: [],
+    env: "GUN_PEERS"
+  },
   mongoUrl: {
     format: String,
     default: undefined,
