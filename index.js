@@ -36,15 +36,13 @@
   let gunConfig = {
     web: httpconfig.server.listen(httpconfig.port),
     file: Config.name,
-    axe: false,
-    radisk: true,
-    multicast: false,
     peers: Config.peers
   };
   if (Config.mongoUrl) {
     require("gun-mongo-key");
     gunConfig = {
       ...gunConfig,
+      ...Config.gunOpts,
       mongo: {
         host: Config.mongoUrl,
         port: Config.mongoPort,

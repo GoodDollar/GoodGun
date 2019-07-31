@@ -13,6 +13,17 @@ const conf = convict({
     default: [],
     env: "GUN_PEERS"
   },
+  gunOpts: {
+    format: Object,
+    description: "override or add gun opts",
+    default: {
+      radisk: false,
+      axe: false,
+      multicast: false,
+      localStorage: false
+    },
+    env: "GUN_OPTS"
+  },
   mongoUrl: {
     format: String,
     default: undefined,
