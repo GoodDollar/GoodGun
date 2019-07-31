@@ -36,7 +36,8 @@
   let gunConfig = {
     web: httpconfig.server.listen(httpconfig.port),
     file: Config.name,
-    axe: false,
+    axe: true,
+    radisk: true,
     multicast: false,
     peers: Config.peers
   };

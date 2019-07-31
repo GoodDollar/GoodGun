@@ -1,0 +1,31 @@
+{
+  "name": "GoodGun",
+  "description": "gundb on heroku using mongodb as storage adapter",
+  "repository": "https://github.com/GoodDollar/GoodGun",
+  "env": {
+    "GUN_PEERS": {
+      "description": "Comma separated gun peers"
+    },
+    "MONGO_URL": {
+      "description": "Mongo url to connect"
+    },
+    "MONGO_QUERY": {
+      "description": "extra mongo configuration"
+    },
+    "MONGO_PORT": {
+      "description": "mongo port",
+      "value": "27017"
+    },
+    "MONGO_DB": {
+      "description": "database name to use"
+    },
+    "MONGO_COLLECTION": {
+      "description": "collection name to use"
+    }
+  },
+  "addons": [
+    {
+      "plan": "mongolab:sandbox"
+    }
+  ]
+}
