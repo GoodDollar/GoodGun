@@ -18,7 +18,7 @@ const conf = convict({
     description: "override or add gun opts",
     default: {
       radisk: false,
-      axe: false,
+      axe: true,
       multicast: false,
       localStorage: false
     },
