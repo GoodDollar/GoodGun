@@ -1,3 +1,5 @@
+var Gun = require("gun");
+var SEA = require("gun/sea");
 (function() {
   var fs = require("fs");
   const Config = require("./config.js");
@@ -9,7 +11,6 @@
       process.argv[2] ||
       8765
   };
-  var Gun = require("gun");
 
   const printMemory = () => {
     const used = process.memoryUsage();
@@ -32,9 +33,9 @@
   } else {
     httpconfig.server = require("http").createServer(Gun.serve(__dirname));
   }
-
+  let httpserver = httpconfig.server.listen(httpconfig.port);
   let gunConfig = {
-    web: httpconfig.server.listen(httpconfig.port),
+    web: httpserver,
     file: Config.name,
     peers: Config.peers
   };
