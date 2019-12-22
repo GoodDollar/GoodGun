@@ -28,10 +28,16 @@ var SEA = require("gun/sea");
     httpconfig.cert = fs.readFileSync(process.env.HTTPS_CERT);
     httpconfig.server = require("https").createServer(
       httpconfig,
-      Gun.serve(__dirname)
+      (req, res) => {
+        res.statusCode = 400;
+        res.end();
+      }
     );
   } else {
-    httpconfig.server = require("http").createServer(Gun.serve(__dirname));
+    httpconfig.server = require("http").createServer((req, res) => {
+      res.statusCode = 400;
+      res.end();
+    });
   }
   let httpserver = httpconfig.server.listen(httpconfig.port);
   let gunConfig = {
