@@ -35,12 +35,13 @@ var SEA = require("gun/sea");
   let gunConfig = {
     web: httpserver,
     peers: Config.peers,
+    rfs: false, //disable default storage
+    ...Config.gunOpts,
   };
   if (Config.mongoUrl) {
     require("gun-mongo-key");
     gunConfig = {
       ...gunConfig,
-      ...Config.gunOpts,
       mongo: {
         host: Config.mongoUrl,
         port: Config.mongoPort,
