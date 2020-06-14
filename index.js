@@ -1,15 +1,10 @@
 var Gun = require("gun");
 var SEA = require("gun/sea");
-(function() {
+(function () {
   var fs = require("fs");
   const Config = require("./config.js");
   var httpconfig = {
-    port:
-      process.env.OPENSHIFT_NODEJS_PORT ||
-      process.env.VCAP_APP_PORT ||
-      process.env.PORT ||
-      process.argv[2] ||
-      8765
+    port: process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || process.env.PORT || process.argv[2] || 8765,
   };
 
   const printMemory = () => {
@@ -26,13 +21,10 @@ var SEA = require("gun/sea");
   if (process.env.HTTPS_KEY) {
     httpconfig.key = fs.readFileSync(process.env.HTTPS_KEY);
     httpconfig.cert = fs.readFileSync(process.env.HTTPS_CERT);
-    httpconfig.server = require("https").createServer(
-      httpconfig,
-      (req, res) => {
-        res.statusCode = 400;
-        res.end();
-      }
-    );
+    httpconfig.server = require("https").createServer(httpconfig, (req, res) => {
+      res.statusCode = 400;
+      res.end();
+    });
   } else {
     httpconfig.server = require("http").createServer((req, res) => {
       res.statusCode = 400;
@@ -42,8 +34,7 @@ var SEA = require("gun/sea");
   let httpserver = httpconfig.server.listen(httpconfig.port);
   let gunConfig = {
     web: httpserver,
-    file: Config.name,
-    peers: Config.peers
+    peers: Config.peers,
   };
   if (Config.mongoUrl) {
     require("gun-mongo-key");
@@ -57,10 +48,10 @@ var SEA = require("gun/sea");
         collection: Config.mongoCollection,
         query: Config.mongoQuery,
         opt: {
-          poolSize: 100 // how large is the connection pool
+          poolSize: 100, // how large is the connection pool
         },
-        chunkSize: 250 // see below
-      }
+        chunkSize: 250, // see below
+      },
     };
   } else if (Config.gunPublicS3 && Config.gunPublicS3.key) {
     gunConfig.s3 = Config.gunPublicS3;
