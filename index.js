@@ -1,8 +1,10 @@
 var Gun = require("gun");
 var SEA = require("gun/sea");
+
 (function () {
   var fs = require("fs");
   const Config = require("./config.js");
+
   var httpconfig = {
     port: process.env.OPENSHIFT_NODEJS_PORT || process.env.VCAP_APP_PORT || process.env.PORT || process.argv[2] || 8765,
   };
@@ -10,14 +12,18 @@ var SEA = require("gun/sea");
   const printMemory = () => {
     const used = process.memoryUsage();
     let toPrint = {};
+
     for (let key in used) {
       toPrint[key] = `${Math.round((used[key] / 1024 / 1024) * 100) / 100} MB`;
     }
+
     console.log("Memory usage:", toPrint);
   };
+
   setInterval(printMemory, 10000);
 
   console.log(Config);
+
   if (process.env.HTTPS_KEY) {
     httpconfig.key = fs.readFileSync(process.env.HTTPS_KEY);
     httpconfig.cert = fs.readFileSync(process.env.HTTPS_CERT);
@@ -31,13 +37,15 @@ var SEA = require("gun/sea");
       res.end();
     });
   }
+
   let httpserver = httpconfig.server.listen(httpconfig.port);
   let gunConfig = {
     web: httpserver,
     peers: Config.peers,
-    rfs: (Config.gunPublicS3.key || Config.mongoUrl) ===  undefined, //disable default storage
+    rfs: !Config.gunPublicS3.key && !Config.mongoUrl, // disable default storage
     ...Config.gunOpts,
   };
+
   if (Config.mongoUrl) {
     require("gun-mongo-key");
     gunConfig = {
@@ -59,7 +67,8 @@ var SEA = require("gun/sea");
   } else {
     gunConfig.file = "radata";
   }
+
   console.log({ gunConfig });
-  var gun = Gun(gunConfig);
+  Gun(gunConfig);
   console.log("Relay peer started on port " + httpconfig.port + " with /gun");
 })();
