@@ -35,7 +35,7 @@ var SEA = require("gun/sea");
   let gunConfig = {
     web: httpserver,
     peers: Config.peers,
-    rfs: false, //disable default storage
+    rfs: (Config.gunPublicS3.key || Config.mongoUrl) ===  undefined, //disable default storage
     ...Config.gunOpts,
   };
   if (Config.mongoUrl) {
