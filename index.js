@@ -1,35 +1,52 @@
-const fs = require("fs");
-const Gun = require("gun");
+const fs = require('fs')
+const Gun = require('gun')
 
-require("gun/sea");
+require('gun/sea')
 
-{ // es6-way to run IIFE
-  const Config = require("./config.js");
+{
+  // es6-way to run IIFE
+  const Config = require('./config.js')
 
-  const { peers, gunOpts, mongoUrl, mongoPort, mongoQuery, mongoDB, mongoCollection, gunPublicS3 } = Config
-  const { OPENSHIFT_NODEJS_PORT, VCAP_APP_PORT, PORT, HTTPS_KEY, HTTPS_CERT } = process.env
+  const {
+    peers,
+    gunOpts,
+    mongoUrl,
+    mongoPort,
+    mongoQuery,
+    mongoDB,
+    mongoCollection,
+    gunPublicS3
+  } = Config
+  const {
+    OPENSHIFT_NODEJS_PORT,
+    VCAP_APP_PORT,
+    PORT,
+    HTTPS_KEY,
+    HTTPS_CERT
+  } = process.env
 
-  const httpPort = OPENSHIFT_NODEJS_PORT || VCAP_APP_PORT || PORT || process.argv[2] || 8765
-  let httpConfig = { port: httpPort };
+  const httpPort =
+    OPENSHIFT_NODEJS_PORT || VCAP_APP_PORT || PORT || process.argv[2] || 8765
+  let httpConfig = { port: httpPort }
 
   const printMemory = () => {
-    let toPrint = {};
-    const used = process.memoryUsage();
+    let toPrint = {}
+    const used = process.memoryUsage()
 
     for (let key in used) {
-      toPrint[key] = `${Math.round((used[key] / 1024 / 1024) * 100) / 100} MB`;
+      toPrint[key] = `${Math.round((used[key] / 1024 / 1024) * 100) / 100} MB`
     }
 
-    console.log("Memory usage:", toPrint);
-  };
+    console.log('Memory usage:', toPrint)
+  }
 
   const httpHandler = (_, res) => {
-    res.statusCode = 400;
-    res.end();
-  };
+    res.statusCode = 400
+    res.end()
+  }
 
   if (HTTPS_KEY) {
-    const http = require("https")
+    const http = require('https')
 
     httpConfig = {
       ...httpConfig,
@@ -37,25 +54,24 @@ require("gun/sea");
       cert: fs.readFileSync(HTTPS_CERT)
     }
 
-
-    httpConfig.server = http.createServer(httpConfig, httpHandler);
+    httpConfig.server = http.createServer(httpConfig, httpHandler)
   } else {
-    const http = require("http")
+    const http = require('http')
 
-    httpConfig.server = http.createServer(httpHandler);
+    httpConfig.server = http.createServer(httpHandler)
   }
 
-  const httpServer = httpConfig.server.listen(httpPort);
+  const httpServer = httpConfig.server.listen(httpPort)
 
   let gunConfig = {
     peers,
     web: httpServer,
     rfs: !gunPublicS3.key && !mongoUrl, // disable default storage
-    ...gunOpts,
-  };
+    ...gunOpts
+  }
 
   if (mongoUrl) {
-    require("gun-mongo-key");
+    require('gun-mongo-key')
 
     gunConfig = {
       ...gunConfig,
@@ -66,21 +82,21 @@ require("gun/sea");
         collection: mongoCollection,
         query: mongoQuery,
         opt: {
-          poolSize: 100, // how large is the connection pool
+          poolSize: 100 // how large is the connection pool
         },
-        chunkSize: 250, // see below
-      },
-    };
+        chunkSize: 250 // see below
+      }
+    }
   } else if (gunPublicS3.key) {
-    gunConfig.s3 = gunPublicS3;
+    gunConfig.s3 = gunPublicS3
   } else {
-    gunConfig.file = "radata";
+    gunConfig.file = 'radata'
   }
 
-  console.log({ gunConfig });
+  console.log({ gunConfig })
 
-  setInterval(printMemory, 10000);
-  Gun(gunConfig);
+  setInterval(printMemory, 10000)
+  Gun(gunConfig)
 
-  console.log("Relay peer started on port " + httpConfig.port + " with /gun");
+  console.log('Relay peer started on port ' + httpConfig.port + ' with /gun')
 }
