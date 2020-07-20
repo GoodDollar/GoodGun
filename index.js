@@ -1,7 +1,7 @@
 const fs = require('fs')
-const Gun = require('gun')
+const Gun = require('@gooddollar/gun')
 
-require('gun/sea')
+require('@gooddollar/gun/sea')
 
 {
   // es6-way to run IIFE
