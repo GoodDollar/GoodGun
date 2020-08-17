@@ -3,6 +3,7 @@ const Gun = require('@gooddollar/gun')
 
 require('@gooddollar/gun/sea')
 require('@gooddollar/gun/nts')
+require('@gooddollar/gun/lib/stats')
 {
   // es6-way to run IIFE
   const Config = require('./config.js')
