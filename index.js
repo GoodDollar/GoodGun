@@ -15,7 +15,8 @@ require('@gooddollar/gun/nts')
     mongoQuery,
     mongoDB,
     mongoCollection,
-    gunPublicS3
+    gunPublicS3,
+    serveGun
   } = Config
   const {
     OPENSHIFT_NODEJS_PORT,
@@ -40,7 +41,7 @@ require('@gooddollar/gun/nts')
     console.log('Memory usage:', toPrint)
   }
 
-  const httpHandler = (_, res) => {
+  const httpHandler = serveGun ? Gun.serve(__dirname) : (_, res) => {
     res.statusCode = 400
     res.end()
   }

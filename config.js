@@ -44,6 +44,11 @@ const conf = convict({
     default: "gun_mongo_key",
     env: "MONGO_COLLECTION",
   },
+  serveGun: {
+    format: Boolean,
+    default: false,
+    env: "SERVE_GUN",
+  },
   gunPublicS3: {
     key: {
       format: "*",
