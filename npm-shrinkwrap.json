@@ -5,9 +5,9 @@
   "requires": true,
   "dependencies": {
     "@gooddollar/gun": {
-      "version": "0.2020.826",
-      "resolved": "https://registry.npmjs.org/@gooddollar/gun/-/gun-0.2020.826.tgz",
-      "integrity": "sha512-Zd1J/o4/EeUadWhkD73eV08nM8GXM/6T5vbbY/y+es5Ymf6T90k7GveHfG0rTHHhB+DJvMRzJpOIIOMl1Rn7nw==",
+      "version": "0.2020.831",
+      "resolved": "https://registry.npmjs.org/@gooddollar/gun/-/gun-0.2020.831.tgz",
+      "integrity": "sha512-aeim7WWVIiLilAGNkr9ZvC1FDjbIuyjZ3H0yTkzXOluVKQlEzDoVvqPg7G01jQ5cRvRZS+5oC169LNN/p4sAuw==",
       "requires": {
         "@peculiar/webcrypto": "^1.1.1",
         "buffer": "^5.4.3",

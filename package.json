@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@gooddollar/gun": "^0.2020.826",
+    "@gooddollar/gun": "^0.2020.831",
     "aws-sdk": "^2.528.0",
     "convict": "^5.0.0",
     "diff": "^3.5.0",
