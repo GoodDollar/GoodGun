@@ -5,9 +5,9 @@
   "requires": true,
   "dependencies": {
     "@gooddollar/gun": {
-      "version": "0.2020.902",
-      "resolved": "https://registry.npmjs.org/@gooddollar/gun/-/gun-0.2020.902.tgz",
-      "integrity": "sha512-b3M15zs4dsllO34oA9kbVV4l5EjtJLJNQNr6cgDU1aJnP2jKc1tDGNtD5/MG/NASqxJdaA2dhJoy2aLcwdwtNw==",
+      "version": "0.2020.910",
+      "resolved": "https://registry.npmjs.org/@gooddollar/gun/-/gun-0.2020.910.tgz",
+      "integrity": "sha512-oI5cPBx1i1E0x9i6+gvlWuEaPbrndnolunOxF069u/im2W8e5jWD4vDTqxRdJ20Y+xl1HWxXHui/Wb64TLcAaA==",
       "requires": {
         "@peculiar/webcrypto": "^1.1.1",
         "buffer": "^5.4.3",
@@ -3144,10 +3144,13 @@
       "integrity": "sha1-llOgNvt8HuQjQvIyXM7v6jkmxI0="
     },
     "pvtsutils": {
-      "version": "1.0.11",
-      "resolved": "https://registry.npmjs.org/pvtsutils/-/pvtsutils-1.0.11.tgz",
-      "integrity": "sha512-k040UEiUms7Ey8fwRvCBvlqcuOxK9IMBnnmIijk0jkAs+gdZQkayenRQ1a2Z574i2HyFVyJ+zwomZc5QEjzewg==",
-      "optional": true
+      "version": "1.0.12",
+      "resolved": "https://registry.npmjs.org/pvtsutils/-/pvtsutils-1.0.12.tgz",
+      "integrity": "sha512-fudCcWFUE7WPHMRVdlEDdeaeLf+8hvZFvfJJ+p8GZlwrrdoiVfv7WZaPt6k7k/NZjMxR8yUbbH51hpwlSmLHiQ==",
+      "optional": true,
+      "requires": {
+        "tslib": "^2.0.1"
+      }
     },
     "pvutils": {
       "version": "1.0.17",
