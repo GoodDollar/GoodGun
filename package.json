@@ -11,6 +11,7 @@
     "diff": "^3.5.0",
     "dotenv": "^8.0.0",
     "growl": "^1.10.5",
+    "gun": "git+https://github.com/amark/gun.git#manhattan",
     "nodemon": "^1.19.1",
     "pm2": "^4.4.0"
   },
