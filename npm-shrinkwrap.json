@@ -5,9 +5,8 @@
   "requires": true,
   "dependencies": {
     "@gooddollar/gun": {
-      "version": "0.2020.910",
-      "resolved": "https://registry.npmjs.org/@gooddollar/gun/-/gun-0.2020.910.tgz",
-      "integrity": "sha512-oI5cPBx1i1E0x9i6+gvlWuEaPbrndnolunOxF069u/im2W8e5jWD4vDTqxRdJ20Y+xl1HWxXHui/Wb64TLcAaA==",
+      "version": "git+https://github.com/GoodDollar/gun.git#d6b897555f8e4d01c74832599af8cd266fcf28fa",
+      "from": "git+https://github.com/GoodDollar/gun.git#debug",
       "requires": {
         "@peculiar/webcrypto": "^1.1.1",
         "buffer": "^5.4.3",
@@ -3923,9 +3922,9 @@
       }
     },
     "webcrypto-core": {
-      "version": "1.1.6",
-      "resolved": "https://registry.npmjs.org/webcrypto-core/-/webcrypto-core-1.1.6.tgz",
-      "integrity": "sha512-v74QssvJYBfQ5b5yZHgivEfZrZCE8ybJVvpWO0wGSU7jdiYdhAnUYmXOvzLkQCWH4DcGe7weEwV//6Z60dy8AA==",
+      "version": "1.1.8",
+      "resolved": "https://registry.npmjs.org/webcrypto-core/-/webcrypto-core-1.1.8.tgz",
+      "integrity": "sha512-hKnFXsqh0VloojNeTfrwFoRM4MnaWzH6vtXcaFcGjPEu+8HmBdQZnps3/2ikOFqS8bJN1RYr6mI2P/FJzyZnXg==",
       "optional": true,
       "requires": {
         "@peculiar/asn1-schema": "^2.0.12",

@@ -5,7 +5,7 @@
   "main": "index.js",
   "node": "12.18.3",
   "dependencies": {
-    "@gooddollar/gun": "^0.2020.910",
+    "@gooddollar/gun": "git+https://github.com/GoodDollar/gun.git#debug",
     "aws-sdk": "^2.528.0",
     "convict": "^5.0.0",
     "diff": "^3.5.0",
