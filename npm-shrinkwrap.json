@@ -4,29 +4,6 @@
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
-    "@gooddollar/gun": {
-      "version": "git+https://github.com/GoodDollar/gun.git#d6b897555f8e4d01c74832599af8cd266fcf28fa",
-      "from": "git+https://github.com/GoodDollar/gun.git#debug",
-      "requires": {
-        "@peculiar/webcrypto": "^1.1.1",
-        "buffer": "^5.4.3",
-        "emailjs": "^2.2.0",
-        "text-encoding": "^0.7.0",
-        "ws": "^7.2.1"
-      },
-      "dependencies": {
-        "buffer": {
-          "version": "5.6.0",
-          "resolved": "https://registry.npmjs.org/buffer/-/buffer-5.6.0.tgz",
-          "integrity": "sha512-/gDYp/UtU0eA1ys8bOs9J6a+E/KWIY+DZ+Q2WESNUA0jFRsJOc0SNUO6xJ5SGA1xueg3NL65W6s+NY5l9cunuw==",
-          "optional": true,
-          "requires": {
-            "base64-js": "^1.0.2",
-            "ieee754": "^1.1.4"
-          }
-        }
-      }
-    },
     "@opencensus/core": {
       "version": "0.0.9",
       "resolved": "https://registry.npmjs.org/@opencensus/core/-/core-0.0.9.tgz",
@@ -2053,6 +2030,29 @@
       "version": "1.10.5",
       "resolved": "https://registry.npmjs.org/growl/-/growl-1.10.5.tgz",
       "integrity": "sha512-qBr4OuELkhPenW6goKVXiv47US3clb3/IbuWF9KNKEijAy9oeHxU9IgzjvJhHkUzhaj7rOUD7+YGWqUjLp5oSA=="
+    },
+    "gun": {
+      "version": "git+https://github.com/amark/gun.git#0bcd5730cf60a4c1c219e28e782b0152579becc3",
+      "from": "git+https://github.com/amark/gun.git#0bcd5730cf60a4c1c219e28e782b0152579becc3",
+      "requires": {
+        "@peculiar/webcrypto": "^1.1.1",
+        "buffer": "^5.4.3",
+        "emailjs": "^2.2.0",
+        "text-encoding": "^0.7.0",
+        "ws": "^7.2.1"
+      },
+      "dependencies": {
+        "buffer": {
+          "version": "5.6.0",
+          "resolved": "https://registry.npmjs.org/buffer/-/buffer-5.6.0.tgz",
+          "integrity": "sha512-/gDYp/UtU0eA1ys8bOs9J6a+E/KWIY+DZ+Q2WESNUA0jFRsJOc0SNUO6xJ5SGA1xueg3NL65W6s+NY5l9cunuw==",
+          "optional": true,
+          "requires": {
+            "base64-js": "^1.0.2",
+            "ieee754": "^1.1.4"
+          }
+        }
+      }
     },
     "has-flag": {
       "version": "3.0.0",

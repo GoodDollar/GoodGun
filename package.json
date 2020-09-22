@@ -5,12 +5,12 @@
   "main": "index.js",
   "node": "12.18.3",
   "dependencies": {
-    "@gooddollar/gun": "git+https://github.com/GoodDollar/gun.git#debug",
     "aws-sdk": "^2.528.0",
     "convict": "^5.0.0",
     "diff": "^3.5.0",
     "dotenv": "^8.0.0",
     "growl": "^1.10.5",
+    "gun": "git+https://github.com/amark/gun.git#0bcd5730cf60a4c1c219e28e782b0152579becc3",
     "nodemon": "^1.19.1",
     "pm2": "^4.4.0"
   },

@@ -1,8 +1,8 @@
 const fs = require('fs')
-const Gun = require('@gooddollar/gun/lib/server')
+const Gun = require('gun/lib/server')
 
-require('@gooddollar/gun/sea')
-require('@gooddollar/gun/nts')
+require('gun/sea')
+require('gun/nts')
 {
   // es6-way to run IIFE
   const Config = require('./config.js')
