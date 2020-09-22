@@ -1,5 +1,5 @@
 const fs = require('fs')
-const Gun = require('gun/lib/server')
+const Gun = require('gun')
 
 require('gun/sea')
 require('gun/nts')
