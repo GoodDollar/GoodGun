@@ -5,8 +5,8 @@
   "main": "index.js",
   "node": "12.18.3",
   "dependencies": {
-    "@gooddollarcommons/gun-flint": "^0.3.0",
-    "@gooddollarcommons/gun-mongo-key": "^0.2.4",
+    "@gooddollarcommons/gun-flint": "latest",
+    "@gooddollarcommons/gun-mongo-key": "latest",
     "aws-sdk": "^2.766.0",
     "convict": "^5.2.0",
     "diff": "^3.5.0",
