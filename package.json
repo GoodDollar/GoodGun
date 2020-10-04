@@ -5,13 +5,14 @@
   "main": "index.js",
   "node": "12.18.3",
   "dependencies": {
-    "@gooddollarcommons/gun-mongo-key": "^0.2.3",
+    "@gooddollarcommons/gun-flint": "^0.3.0",
+    "@gooddollarcommons/gun-mongo-key": "^0.2.4",
     "aws-sdk": "^2.766.0",
     "convict": "^5.2.0",
     "diff": "^3.5.0",
     "dotenv": "^8.2.0",
     "growl": "^1.10.5",
-    "gun": "git+https://github.com/amark/gun.git#0bcd5730cf60a4c1c219e28e782b0152579becc3",
+    "gun": "git+https://github.com/amark/gun.git#manhattan",
     "nodemon": "^1.19.4",
     "pm2": "^4.5.0"
   },
