@@ -29,9 +29,9 @@
       }
     },
     "@gooddollarcommons/gun-flint": {
-      "version": "0.2.0",
-      "resolved": "https://registry.npmjs.org/@gooddollarcommons/gun-flint/-/gun-flint-0.2.0.tgz",
-      "integrity": "sha512-Lk9qnD5eLHcd4MLyossKAi7pi3KYw+cwD/htVw8vPpVQv/0UI2sY3U0p1oslTQQwLKT02C9RZDfblpVpZHgjKg==",
+      "version": "0.3.0",
+      "resolved": "https://registry.npmjs.org/@gooddollarcommons/gun-flint/-/gun-flint-0.3.0.tgz",
+      "integrity": "sha512-/6I7aCb4txDxBxXQPb7U9MEyV2ZyMfuEmzhhp4RsFnZNLNDYlKGavSnURuBCvvF+0deSQI8GUsPnyIRz8IgrNQ==",
       "requires": {
         "babel-runtime": "^6.11.6",
         "minimist": "^1.2.0",
@@ -39,11 +39,11 @@
       }
     },
     "@gooddollarcommons/gun-mongo-key": {
-      "version": "0.2.3",
-      "resolved": "https://registry.npmjs.org/@gooddollarcommons/gun-mongo-key/-/gun-mongo-key-0.2.3.tgz",
-      "integrity": "sha512-Y4nARd+033p+V6qpUyZ8jQYVsZedb2NECbEoNAcduUOFynBlvVU+Ddm93IN7+LS0DM1/1yGlyI9UrGJ+36etGg==",
+      "version": "0.2.4",
+      "resolved": "https://registry.npmjs.org/@gooddollarcommons/gun-mongo-key/-/gun-mongo-key-0.2.4.tgz",
+      "integrity": "sha512-2BrdYJnUimgZcHUWAByva3bzDu2PimJkforM+LxPTqNB4My3onRYz23kJF1A4gut/tCsugARaAUYuswQ9isGtA==",
       "requires": {
-        "@gooddollarcommons/gun-flint": "^0.2.0",
+        "@gooddollarcommons/gun-flint": "^0.3.0",
         "mongojs": "^2.4.0"
       }
     },
