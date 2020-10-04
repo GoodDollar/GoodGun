@@ -4,6 +4,11 @@ const Gun = require('@gooddollar/gun/lib/server')
 require('@gooddollar/gun/sea')
 require('@gooddollar/gun/nts')
 {
+  process.on('uncaughtException', (err) => {
+    console.error('Caught exception: ' + err, err.stack)
+    process.exit(-1)
+  });
+  
   // es6-way to run IIFE
   const Config = require('./config.js')
 
