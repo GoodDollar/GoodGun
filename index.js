@@ -4,6 +4,10 @@ global.Gun = Gun
 require('gun/sea')
 require('gun/nts')
 {
+process.on('uncaughtException', function(err) {
+  console.log('Caught exception: ' + err);
+});
+
   // es6-way to run IIFE
   const Config = require('./config.js')
 
