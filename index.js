@@ -1,6 +1,6 @@
 const fs = require('fs')
 const Gun = require('gun')
-
+global.Gun = Gun
 require('gun/sea')
 require('gun/nts')
 {
@@ -72,10 +72,14 @@ require('gun/nts')
   }
 
   if (mongoUrl) {
-    require('gun-mongo-key')
+    require('@gooddollarcommons/gun-mongo-key')
 
     gunConfig = {
       ...gunConfig,
+      Radisk:false,
+      radisk:false,
+      localStorage:false,
+      store:{},
       mongo: {
         host: mongoUrl,
         port: mongoPort,
@@ -83,7 +87,7 @@ require('gun/nts')
         collection: mongoCollection,
         query: mongoQuery,
         opt: {
-          poolSize: 100 // how large is the connection pool
+          poolSize: 1000 // how large is the connection pool
         },
         chunkSize: 250 // see below
       }
