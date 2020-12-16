@@ -4,35 +4,29 @@ global.Gun = Gun
 require('@gooddollar/gun/sea')
 require('@gooddollar/gun/nts')
 {
-  process.on('uncaughtException', (err) => {
+  process.on('uncaughtException', err => {
     console.error('Caught exception: ' + err, err.stack)
     process.exit(-1)
-  });
-  
+  })
+
+  const heapProfile = require('heap-profile')
+
+  heapProfile.start()
+
+  // Write a snapshot to disk every hour
+  setInterval(() => {
+    heapProfile.write((err, filename) => {
+      console.log(`heapProfile.write. err: ${err} filename: ${filename}`)
+    })
+  }, 10 * 60 * 1000).unref()
+
   // es6-way to run IIFE
   const Config = require('./config.js')
 
-  const {
-    peers,
-    gunOpts,
-    mongoUrl,
-    mongoPort,
-    mongoQuery,
-    mongoDB,
-    mongoCollection,
-    gunPublicS3,
-    serveGun
-  } = Config
-  const {
-    OPENSHIFT_NODEJS_PORT,
-    VCAP_APP_PORT,
-    PORT,
-    HTTPS_KEY,
-    HTTPS_CERT
-  } = process.env
+  const { peers, gunOpts, mongoUrl, mongoPort, mongoQuery, mongoDB, mongoCollection, gunPublicS3, serveGun } = Config
+  const { OPENSHIFT_NODEJS_PORT, VCAP_APP_PORT, PORT, HTTPS_KEY, HTTPS_CERT } = process.env
 
-  const httpPort =
-    OPENSHIFT_NODEJS_PORT || VCAP_APP_PORT || PORT || process.argv[2] || 8765
+  const httpPort = OPENSHIFT_NODEJS_PORT || VCAP_APP_PORT || PORT || process.argv[2] || 8765
   let httpConfig = { port: httpPort }
 
   const printMemory = () => {
@@ -46,10 +40,12 @@ require('@gooddollar/gun/nts')
     console.log('Memory usage:', toPrint)
   }
 
-  const httpHandler = serveGun ? Gun.serve(__dirname) : (_, res) => {
-    res.statusCode = 400
-    res.end()
-  }
+  const httpHandler = serveGun
+    ? Gun.serve(__dirname)
+    : (_, res) => {
+        res.statusCode = 400
+        res.end()
+      }
 
   if (HTTPS_KEY) {
     const http = require('https')
@@ -57,7 +53,7 @@ require('@gooddollar/gun/nts')
     httpConfig = {
       ...httpConfig,
       key: fs.readFileSync(HTTPS_KEY),
-      cert: fs.readFileSync(HTTPS_CERT)
+      cert: fs.readFileSync(HTTPS_CERT),
     }
 
     httpConfig.server = http.createServer(httpConfig, httpHandler)
@@ -73,7 +69,7 @@ require('@gooddollar/gun/nts')
     peers,
     web: httpServer,
     rfs: !gunPublicS3.key && !mongoUrl, // disable default storage
-    ...gunOpts
+    ...gunOpts,
   }
 
   if (mongoUrl) {
@@ -81,10 +77,10 @@ require('@gooddollar/gun/nts')
 
     gunConfig = {
       ...gunConfig,
-      Radisk:false,
-      radisk:false,
-      localStorage:false,
-      store:{},
+      Radisk: false,
+      radisk: false,
+      localStorage: false,
+      store: {},
       mongo: {
         host: mongoUrl,
         port: mongoPort,
@@ -92,10 +88,10 @@ require('@gooddollar/gun/nts')
         collection: mongoCollection,
         query: mongoQuery,
         opt: {
-          poolSize: 1000 // how large is the connection pool
+          poolSize: 1000, // how large is the connection pool
         },
-        chunkSize: 250 // see below
-      }
+        chunkSize: 250, // see below
+      },
     }
   } else if (gunPublicS3.key) {
     gunConfig.s3 = gunPublicS3

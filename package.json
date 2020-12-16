@@ -22,5 +22,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "heap-profile": "^0.4.0"
+  }
 }
