@@ -1,0 +1,55 @@
+version: "2.2"
+services:
+  nginx-proxy:
+    restart: always
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /gun/certs:/etc/nginx/certs
+      - /gun/vhost.d:/etc/nginx/vhost.d
+      - /gun/html:/usr/share/nginx/html
+    command: >
+      bash -c "
+      sed -i -e 's/^\(upstream .*\)/{{ $$ip_hash := or (first (groupByKeys $$containers \"Env.USE_IP_HASH\")) \"0\" }}\n\n\1 \n{{ if ne $$ip_hash \"0\" }} \n     ip_hash;\n{{ end }}/g' nginx.tmpl ;
+      forego start -r
+      "
+   
+  nginx-letsencrypt:
+    restart: always
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes_from:
+      - nginx-proxy
+    environment:
+      - DEFAULT_EMAIL=techadmin@gooddollar.org
+
+  gun1:
+    #restart: always
+    build: .
+    environment:
+      - USE_IP_HASH=1
+      - NODE_OPTIONS=--max_old_space_size=3072
+      - VIRTUAL_HOST=goodgun-nvme.gooddollar.org
+      - LETSENCRYPT_HOST=goodgun-nvme.gooddollar.org
+#      - VIRTUAL_HOST=goodgun.gooddollar.org,goodgun-nvme.gooddollar.org
+ #     - LETSENCRYPT_HOST=goodgun.gooddollar.org,goodgun-nvme.gooddollar.org
+      - GUN_OPTS={"chunk":65536,"memory":2500,"rad":false,"localStorage":false,"rfs":false,"radisk":false, "file":"manhattan"}
+#      - GUN_PEERS=http://goodgun_gun1_1/gun,http://goodgun-prod.herokuapp.com/gun
+      - GUN_PEERS=https://goodgun-prod.herokuapp.com/gun
+    expose:
+      - "80"
+#  gun2:
+#    restart: always
+#    build: .
+#    environment:
+#      - NODE_OPTIONS=--max_old_space_size=3072
+#      - VIRTUAL_HOST=goodgun2.gooddollar.org
+#      - LETSENCRYPT_HOST=goodgun2.gooddollar.org
+#      - GUN_OPTS={"chunk":65536,"memory":2500,"rad":false,"localStorage":false,"rfs":false,"radisk":false}
+#      - GUN_PEERS=https://goodgun-prod.herokupp.com/gun
+#    expose:
+#      - "80"
