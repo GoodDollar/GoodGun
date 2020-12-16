@@ -3,12 +3,14 @@ const Gun = require('gun')
 global.Gun = Gun
 require('gun/sea')
 require('gun/nts')
+const v8 = require("v8")
 {
 process.on('uncaughtException', (err) => {
   console.error('Caught exception: ' + err, err.stack)
   process.exit(-1)
 });
 
+  console.log(v8.getHeapStatistics())
   // es6-way to run IIFE
   const Config = require('./config.js')
 
