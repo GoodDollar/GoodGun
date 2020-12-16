@@ -9,6 +9,8 @@ require('@gooddollar/gun/nts')
     process.exit(-1)
   })
 
+  const Config = require('./config.js')
+
   const heapProfile = require('heap-profile')
 
   heapProfile.start()
@@ -18,10 +20,9 @@ require('@gooddollar/gun/nts')
     heapProfile.write((err, filename) => {
       console.log(`heapProfile.write. err: ${err} filename: ${filename}`)
     })
-  }, 10 * 60 * 1000).unref()
+  }, Config.heapProfileInterval).unref()
 
   // es6-way to run IIFE
-  const Config = require('./config.js')
 
   const { peers, gunOpts, mongoUrl, mongoPort, mongoQuery, mongoDB, mongoCollection, gunPublicS3, serveGun } = Config
   const { OPENSHIFT_NODEJS_PORT, VCAP_APP_PORT, PORT, HTTPS_KEY, HTTPS_CERT } = process.env

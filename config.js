@@ -1,78 +1,83 @@
-require("dotenv").config();
-const convict = require("convict");
+require('dotenv').config()
+const convict = require('convict')
 
 // Define a schema
 const conf = convict({
   name: {
     format: String,
-    default: "goodgun",
-    env: "GUN_NAME",
+    default: 'goodgun',
+    env: 'GUN_NAME',
   },
   peers: {
     format: Array,
     default: [],
-    env: "GUN_PEERS",
+    env: 'GUN_PEERS',
   },
   gunOpts: {
     format: Object,
-    description: "override or add gun opts",
+    description: 'override or add gun opts',
     default: {},
-    env: "GUN_OPTS",
+    env: 'GUN_OPTS',
   },
   mongoUrl: {
     format: String,
     default: undefined,
-    env: "MONGO_URL",
+    env: 'MONGO_URL',
   },
   mongoPort: {
-    format: "port",
-    default: "27017",
-    env: "MONGO_PORT",
+    format: 'port',
+    default: '27017',
+    env: 'MONGO_PORT',
   },
   mongoQuery: {
     format: String,
-    default: "",
-    env: "MONGO_QUERY",
+    default: '',
+    env: 'MONGO_QUERY',
   },
   mongoDB: {
     format: String,
-    default: "test",
-    env: "MONGO_DB",
+    default: 'test',
+    env: 'MONGO_DB',
   },
   mongoCollection: {
     format: String,
-    default: "gun_mongo_key",
-    env: "MONGO_COLLECTION",
+    default: 'gun_mongo_key',
+    env: 'MONGO_COLLECTION',
   },
   serveGun: {
     format: Boolean,
     default: false,
-    env: "SERVE_GUN",
+    env: 'SERVE_GUN',
   },
   gunPublicS3: {
     key: {
-      format: "*",
+      format: '*',
       default: undefined,
     },
     secret: {
-      format: "*",
+      format: '*',
       default: undefined,
     },
     bucket: {
-      format: "*",
+      format: '*',
       default: undefined,
     },
   },
-});
+  heapProfileInterval: {
+    format: Number,
+    default: 1000 * 30,
+    env: 'HEAP_PROFILE_INTERVAL',
+  },
+})
 
-const publicS3 = process.env.GUN_PUBLIC_S3;
+const publicS3 = process.env.GUN_PUBLIC_S3
 if (publicS3) {
-  let s3Vals = publicS3.split(",");
-  let s3Conf = { key: s3Vals[0], secret: s3Vals[1], bucket: s3Vals[2] };
-  conf.set("gunPublicS3", s3Conf);
+  let s3Vals = publicS3.split(',')
+  let s3Conf = { key: s3Vals[0], secret: s3Vals[1], bucket: s3Vals[2] }
+  conf.set('gunPublicS3', s3Conf)
 }
 // Perform validation
-conf.validate({ allowed: "strict" });
+conf.validate({ allowed: 'strict' })
 // eslint-disable-next-line
 
-module.exports = conf.getProperties();
+module.exports = conf.getProperties()
