@@ -12,7 +12,7 @@
     "diff": "^3.5.0",
     "dotenv": "^8.2.0",
     "growl": "^1.10.5",
-    "gun": "git+https://github.com/amark/gun.git#1dd6fbcbceea83ed377262c95cd0a3a4fd3f48de",
+    "gun": "git+https://github.com/GoodDollar/gun.git#manhattanv2",
     "nodemon": "^1.19.4",
     "pm2": "^4.5.0"
   },
