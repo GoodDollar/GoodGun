@@ -9,7 +9,7 @@
     "@gooddollarcommons/gun-flint": "latest",
     "@gooddollarcommons/gun-mongo-key": "latest",
     "aws-sdk": "^2.528.0",
-    "convict": "^5.0.0",
+    "convict": "^6.2.2",
     "diff": "^3.5.0",
     "dotenv": "^8.0.0",
     "growl": "^1.10.5",
